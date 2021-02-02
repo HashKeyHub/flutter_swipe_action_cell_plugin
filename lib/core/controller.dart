@@ -146,4 +146,9 @@ class SwipeActionController {
   void _fireEditEvent({bool editing}) {
     SwipeActionStore.getInstance().bus.fire(EditingModeEvent(editing: editing));
   }
+
+  /// 开启删除UI
+  void startDelete(int index) {
+    SwipeActionStore.getInstance().bus.fire(CellStartDeleteEvent(index: index));
+  }
 }

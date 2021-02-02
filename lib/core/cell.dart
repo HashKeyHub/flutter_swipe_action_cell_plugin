@@ -149,6 +149,7 @@ class SwipeActionCellState extends State<SwipeActionCell>
   StreamSubscription ignorePointerSubscription;
   StreamSubscription changeEditingModeSubscription;
   StreamSubscription selectedSubscription;
+  StreamSubscription startDeleteSubscription;
 
   bool ignorePointer;
   bool editing;
@@ -249,6 +250,15 @@ class SwipeActionCellState extends State<SwipeActionCell>
   }
 
   void _listenEvent() {
+    startDeleteSubscription = SwipeActionStore.getInstance()
+        .bus
+        .on<CellStartDeleteEvent>()
+        .listen((event) {
+      if (widget.index != null && widget.index == event.index) {
+        _openWithAnim(trailing: true);
+      }
+    });
+
     selectedSubscription = SwipeActionStore.getInstance()
         .bus
         .on<CellSelectedEvent>()
@@ -305,6 +315,7 @@ class SwipeActionCellState extends State<SwipeActionCell>
     otherCellOpenEventSubscription?.cancel();
     ignorePointerSubscription?.cancel();
     changeEditingModeSubscription?.cancel();
+    startDeleteSubscription?.cancel();
     super.dispose();
   }
 
