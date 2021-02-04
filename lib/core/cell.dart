@@ -257,6 +257,8 @@ class SwipeActionCellState extends State<SwipeActionCell>
         .listen((event) {
       if (widget.index != null && widget.index == event.index) {
         _openWithAnim(trailing: true);
+      } else {
+        closeWithAnim();
       }
     });
 
