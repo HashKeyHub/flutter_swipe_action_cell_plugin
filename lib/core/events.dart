@@ -43,9 +43,12 @@ class CellSelectedEvent {
   final bool selected;
 }
 
-
 class CellStartDeleteEvent {
   CellStartDeleteEvent({this.index});
 
   final int index;
+}
+
+class CellEndDeleteEvent {
+  CellEndDeleteEvent();
 }

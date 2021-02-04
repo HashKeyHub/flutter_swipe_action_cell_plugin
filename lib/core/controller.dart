@@ -151,4 +151,9 @@ class SwipeActionController {
   void startDelete(int index) {
     SwipeActionStore.getInstance().bus.fire(CellStartDeleteEvent(index: index));
   }
+
+  /// 关闭删除UI
+  void endDelete() {
+    SwipeActionStore.getInstance().bus.fire(CellEndDeleteEvent());
+  }
 }
